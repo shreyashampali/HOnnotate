@@ -2,6 +2,10 @@
 segmentation and keypoint detections. Optimization scripts for full annotation of hand and 
 object 3D poses will be released soon!
 
+# HOnnotate: A method for 3D Annotation of Hand and Object Poses
+Shreyas Hampali, Mahdi Rad, Markus Oberweger, Vincent Lepetit, CVPR 2020
+- [Project page](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/)
+
 # Installation
 - This code has been tested with Tensorflow 1.12.
 
