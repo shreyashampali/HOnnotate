@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea
+models/slim
+models/deeplab
+checkpoints
+objCorners
