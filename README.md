@@ -5,7 +5,7 @@ object 3D poses will be released soon!
 # Installation
 - This code has been tested with Tensorflow 1.12.
 
-#Setup
+# Setup
 `HOnnotate_ROOT` is the directory where you download this repo.
 - Clone the *deeplab* repository and checkout the commit on which our code is tested
 ```
