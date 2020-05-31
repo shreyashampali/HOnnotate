@@ -3,7 +3,7 @@ segmentation and keypoint detections. Optimization scripts for full annotation o
 object 3D poses will be released soon!
 
 # Installation
-- This code has been tested with Tensorflow 1.12
+- This code has been tested with Tensorflow 1.12.
 
 #Setup
 `HOnnotate_ROOT` is the directory where you download this repo.
