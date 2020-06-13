@@ -98,11 +98,11 @@ class datasetHo3dMultiCamera(datasetBase):
             im = np.vstack(itertools.imap(np.uint16, r.asDirect()[2])).astype(np.float32)
         return im
 
-
-    def getCamMat(self, seq):
+    @staticmethod
+    def getCamMat(seq):
         camInd = 0
-        camMatFile = os.path.join(self.seqDir, seq, 'calibration', 'cam_%s_intrinsics.txt' % (camInd))
-        depthScaleFile = os.path.join(self.seqDir, seq, 'calibration', 'cam_%s_depth_scale.txt' % (camInd))
+        camMatFile = os.path.join(HO3D_MULTI_CAMERA_DIR, seq, 'calibration', 'cam_%s_intrinsics.txt' % (camInd))
+        depthScaleFile = os.path.join(HO3D_MULTI_CAMERA_DIR, seq, 'calibration', 'cam_%s_depth_scale.txt' % (camInd))
 
         if not os.path.exists(camMatFile):
             raise Exception('Where is the camera intrinsics file???')
@@ -218,7 +218,7 @@ class datasetHo3dMultiCamera(datasetBase):
         coordChangeMat = np.array([[1., 0., 0.], [0, -1., 0.], [0., 0., -1.]], dtype=np.float32)
         ds = dataSample(img=imgPatch, seg=newSeg, fName=fId, dataset=datasetType.HO3D,
                         outType=outputType.SEG | outputType.KEYPOINT_3D | outputType.KEYPOINTS_2D,
-                        pts2D=kps2DAug, pts3D=kps3DAug.dot(coordChangeMat), camMat=camMat, depth=None)
+                        pts2D=kps2DAug, pts3D=kps3DAug.dot(coordChangeMat), camMat=camMat, depth=depthEnc)
 
 
         return None, ds

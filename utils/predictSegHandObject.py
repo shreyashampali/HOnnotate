@@ -33,7 +33,7 @@ flags.DEFINE_multi_integer('atrous_rates', [6, 12, 18],
 flags.DEFINE_integer('output_stride', 16,
                      'The ratio of input to output spatial resolution.')
 
-flags.DEFINE_multi_float('eval_scales', [0.5, 0.75, 1.0, 1.25],
+flags.DEFINE_multi_float('eval_scales', [1.0],#[0.5, 0.75, 1.0, 1.25],
                          'The scales to resize images for evaluation.')
 
 FLAGS.decoder_output_stride = 4

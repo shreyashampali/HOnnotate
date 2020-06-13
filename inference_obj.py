@@ -80,7 +80,7 @@ def postProcess(dummy, consQueue, numImgs, numConsThreads):
             cornersTrans = corners.dot(poses[0][:, :3].T) + poses[0][:, 3].reshape(1, 3)
             cornerProj, _ = cv2.projectPoints(cornersTrans, np.zeros((3,)), np.zeros((3,)), ds.camMat,
                                                       np.zeros((4,)))
-            kps2DPreds[jobID] = cornerProj[:,0,:]
+            # kps2DPreds[jobID] = cornerProj[:,0,:]
 
 
             if len(ds.fileName.split('/')) == 3:
@@ -198,7 +198,7 @@ def runNetInLoop(fileListIn, numImgs):
 
         # get the patch center and size from segmentations
         center = np.array([(tl_x+br_x) / 2., (tl_y+br_y) / 2.])
-        cropPatchSizeNp = np.array([br_x-tl_x, br_y-tl_y])*1.2
+        cropPatchSizeNp = np.array([br_x-tl_x, br_y-tl_y])*2.0
 
         coordChangeMat = np.array([[1., 0., 0.], [0, -1., 0.], [0., 0., -1.]], dtype=np.float32)
         predsDict = sess.run(predictions, feed_dict={data.image: cv2.resize(ds.imgRaw, (w,h), interpolation=cv2.INTER_CUBIC),
