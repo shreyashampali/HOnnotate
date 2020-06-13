@@ -99,7 +99,7 @@ We use *deeplab* network for segmentation and *Convolutional pose machine* for h
 keypoint detection. The networks are trained with *HO3D* dataset and the weights
 can be downloaded from [here](https://files.icg.tugraz.at/f/f23053e075a140ca8756/?dl=1)
  
-### 0.1 Hand+Object segmentations
+### 0.1. Hand+Object segmentations
 ```
         python inference_seg.py --seq 'test'
 ```
@@ -109,7 +109,7 @@ The segmentations are saved in *segmentation* directory of the `test` sequence
   <img width="320" height="240" src="teaser_images/00002_prediction.png">
 </p>
 
-### 0.2 Hand 2D keypoints
+### 0.2. Hand 2D keypoints
 This requires the segmentation script to be run beforehand
 ```.env
         python inference_hand.py --seq 'test'
@@ -122,7 +122,7 @@ The 2D keypoints are saved in *CPMHand* directory of the `test` sequence
 ## 1. Hand and Object Pose Initializations
 
 
-### 1.1 Object pose initialization
+### 1.1. Object pose initialization
 The object pose in all frames of the sequence is initialized by tracking. To reduce the effort of manual initialization,
 the object pose in the first frame can be simple upright position. Before tracking the object pose,
 the config file `configObjPose.json` in *configs* folder of the`test` sequence should be updated.
@@ -147,7 +147,7 @@ optimization for each frame and below visualization.
 The above figure shows the input frame after object segmentation, object rendered in 
 the initialization pose, depth map error and silhouette error.
 
-### 1.2 Hand pose initialization
+### 1.2. Hand pose initialization
 This script obtains initial 3D grasp pose of the hand relative to the object coordinate frame using the hand 2D keypoints detected earlier (step 0.2). Refer to Eq. (12) in paper for this optimization
 for more details.
 ```python
@@ -180,5 +180,8 @@ of optimization and visualization (if enabled) will be dumped in *dirt_grasp_pos
 
 ## 3. Object Pose Estimation
 
+Coming soon
+
 ## 4. Multi-frame Pose Refinement
 
+Coming soon
