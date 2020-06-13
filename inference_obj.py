@@ -204,7 +204,7 @@ def runNetInLoop(fileListIn, numImgs):
         predsDict = sess.run(predictions, feed_dict={data.image: cv2.resize(ds.imgRaw, (w,h), interpolation=cv2.INTER_CUBIC),
                                                      data.label: np.expand_dims(ds.segRaw, 2),
                                                      data.kps2D: ds.pts2D,
-                                                     data.kps3D: ds.pts3D.dot(coordChangeMat), # changing the coord system here because tf.cond statement in preProcessData() is not getting executed for some fucking reason
+                                                     data.kps3D: ds.pts3D.dot(coordChangeMat),
                                                      data.outputType: ds.outputType,
                                                      data.datasetName: ds.dataset,
                                                      data.height: ds.height,
