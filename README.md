@@ -202,10 +202,7 @@ this stage and *Object pose initialization* in step 1.1 is, the hand mesh render
         python handObjectTrackingSingleFrame.py --seq 'test' --showFig --doPyRender
 ```
 The results are dumped in *dirt_hand_obj_pose* folder of `test` sequence. 
-<p align="center">
- <img width="320" src="teaser_images/ho_track.gif">
-  <img width="320" src="teaser_images/ho_track_blend.gif">
-</p> 
+ 
 
 ## 4. Multi-frame Pose Refinement
 
@@ -219,7 +216,7 @@ The results are dumped in *dirt_hand_obj_refine* folder of `test` sequence.
  <img width="320" src="teaser_images/ho_refine.gif">
   <img width="320" src="teaser_images/ho_refine_blend.gif">
 </p> 
-Notice how the pose of thumb is improved after refinement in the above figure.
+ 
 
 # Acknowledgements
 
