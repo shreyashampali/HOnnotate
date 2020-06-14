@@ -1,11 +1,20 @@
-**Under construction**: Currently this repo contains inference scripts for hand+object
-segmentation and keypoint detections. Optimization scripts for full annotation of hand and 
-object 3D poses will be released soon!
 
 # HOnnotate: A method for 3D Annotation of Hand and Object Poses
 Shreyas Hampali, Mahdi Rad, Markus Oberweger, Vincent Lepetit, CVPR 2020
 - [Project page](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/)
 
+This repository contains code for annotating 3D poses of hand and object when captured with a **single RGBD camera setup**.
+
+# Citation
+If this code base was helpful in your research work, please consider citing us:
+```
+@INPROCEEDINGS{hampali2020honnotate,
+title={HOnnotate: A method for 3D Annotation of Hand and Object Poses},
+author={Shreyas Hampali and Mahdi Rad and Markus Oberweger and Vincent Lepetit},
+booktitle = {CVPR},
+year = {2020}
+}
+```
 # Installation
 - This code has been tested with Tensorflow 1.12 and Python 3.5
 - Create a conda environment and install the following main packages.
@@ -62,6 +71,7 @@ Note that the path should not contain the sequence name i.e., the path is until 
 - The codes in this repository allow annotation of hand-object 3D poses of sequences obtained from 
 single RGBD camera setup.
 - A test sequence captured on Intel RealSense D415 camera can be downloaded from [here](https://files.icg.tugraz.at/f/1a55e8134bda4dd7938d/?dl=1)
+- Note that as explained in Section (4.2) of paper, **the grasp pose of the hand should vary marginally** throughout the sequence when captured on single camera setup. 
 - Any new data captured from other camera setup should follow the same folder structure as in the test sequence.
 - Folder structure:
 ```
@@ -89,7 +99,7 @@ single RGBD camera setup.
 camera instrinsics. **.json* in *configs* are used as inputs to the scripts (explained later).
 Folder name *'0'* in *rgb* and *depth* folder correspond to camera ID, which is always *0* in single camera setup. 
 
-# Run
+# Run (Single camera setup)
 Please refer to Section 4.2 in the [paper](https://arxiv.org/pdf/1907.01481.pdf). Below stages
 for performing automatic hand-object pose annotation follows the same pipeline as in paper.
 ![Single camera pipeline](teaser_images/single_camera_pipeline.png)
@@ -175,13 +185,46 @@ Remove `--showFig` and `--doPyRender` flags to run faster without visualization.
 of optimization and visualization (if enabled) will be dumped in *dirt_grasp_pose* folder of the 
 `test` sequence.
 <p align="center">
-  <img width="350" src="teaser_images/grasp_pose.gif">
+ <img width="720" src="teaser_images/hand_pose_opt.gif">
+  <img width="450" src="teaser_images/grasp_pose.gif">
 </p>
+The first figure above shows the pose of object and hand during optimization. First row is 
+ the input image, second row is the hand-object rendered with poses at current iteration, third and 
+ fourth row shows the depth and silhoutte erro. The second figure above is the grasp pose of the hand after optimization.
 
 ## 3. Object Pose Estimation
 
-Coming soon
+A more accurate object pose is obtained by tracking the object poses as explained in Section 4.2 of paper. The difference between
+this stage and *Object pose initialization* in step 1.1 is, the hand mesh rendered with the estimated
+ grasp pose is also used in the optimization. Update the *configHandObjPose.json* file in *configs* folder
+ of the `test` sequence as earlier in step 1.1.
+ ```python
+        python handObjectTrackingSingleFrame.py --seq 'test' --showFig --doPyRender
+```
+The results are dumped in *dirt_hand_obj_pose* folder of `test` sequence. 
+<p align="center">
+ <img width="320" src="teaser_images/ho_track.gif">
+  <img width="320" src="teaser_images/ho_track_blend.gif">
+</p> 
 
 ## 4. Multi-frame Pose Refinement
 
-Coming soon
+This stage performs optimization over mutliple frames and over all the hand-object pose variables. Refer to Eq. (1) in paper.
+The optimization is done in batches.
+```python
+        python handObjectRefinementMultiframe.py --seq 'test' --showFig --doPyRender --batchSize 20
+```
+The results are dumped in *dirt_hand_obj_refine* folder of `test` sequence.
+<p align="center">
+ <img width="320" src="teaser_images/ho_refine.gif">
+  <img width="320" src="teaser_images/ho_refine_blend.gif">
+</p> 
+Notice how the pose of thumb is improved after refinement in the above figure.
+
+# Acknowledgements
+
+- We would like to thank the authors of [Monocular total capture: Posing face, body, and hands in the wild](https://github.com/CMU-Perceptual-Computing-Lab/MonocularTotalCapture) for making the *Convolutional
+pose machine* code public
+- Thanks to the authors of [End-to-end Recovery of Human Shape and Pose](https://github.com/akanazawa/hmr#end-to-end-recovery-of-human-shape-and-pose) for making their
+tensorflow MANO code public
+- Thanks to [Yana Hasson](https://hassony2.github.io/) for proof reading the paper

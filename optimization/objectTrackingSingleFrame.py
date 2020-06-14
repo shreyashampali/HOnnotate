@@ -25,6 +25,7 @@ import matplotlib.pyplot as plt
 depthScale = 0.00012498664727900177 # constant depth scale used throughout the project
 bgDepth = 2.0
 handLabel = 2
+DEPTH_THRESH = 0.75
 
 datasetName = datasetType.HO3D_MULTICAMERA
 
@@ -231,7 +232,7 @@ def dataGen(w, h, datasetName):
         dpt = dpt * depthScale
 
         # clean up depth map
-        dptMask = np.logical_or(dpt > 0.7, dpt == 0.0)
+        dptMask = np.logical_or(dpt > DEPTH_THRESH, dpt == 0.0)
         dpt[dptMask] = bgDepth
 
         # clean up seg map

@@ -133,3 +133,4 @@ models/slim
 models/deeplab
 checkpoints
 objCorners
+optimization/mano

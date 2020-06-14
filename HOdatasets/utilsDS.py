@@ -56,13 +56,13 @@ def cv2ProjectPoints(camProp, pts3D, isOpenGLCoords=True):
 
 def loadAllObjectCorners():
     objCorners = {}
-    objCorners['003_cracker_box'] = np.load(os.path.join(YCB_MODELS_DIR, '003_cracker_box', 'corners.npy'))
-    objCorners['004_sugar_box'] = np.load(os.path.join(YCB_MODELS_DIR, '004_sugar_box', 'corners.npy'))
-    objCorners['006_mustard_bottle'] = np.load(os.path.join(YCB_MODELS_DIR, '006_mustard_bottle', 'corners.npy'))
-    objCorners['025_mug'] = np.load(os.path.join(YCB_MODELS_DIR, '025_mug', 'corners.npy'))
-    objCorners['019_pitcher_base'] = np.load(os.path.join(YCB_MODELS_DIR, '019_pitcher_base', 'corners.npy'))
-    objCorners['035_power_drill'] = np.load(os.path.join(YCB_MODELS_DIR, '035_power_drill', 'corners.npy'))
-    objCorners['037_scissors'] = np.load(os.path.join(YCB_MODELS_DIR, '037_scissors', 'corners.npy'))
+    objCorners['003_cracker_box'] = np.load(os.path.join(YCB_OBJECT_CORNERS_DIR, '003_cracker_box', 'corners.npy'))
+    objCorners['004_sugar_box'] = np.load(os.path.join(YCB_OBJECT_CORNERS_DIR, '004_sugar_box', 'corners.npy'))
+    objCorners['006_mustard_bottle'] = np.load(os.path.join(YCB_OBJECT_CORNERS_DIR, '006_mustard_bottle', 'corners.npy'))
+    objCorners['025_mug'] = np.load(os.path.join(YCB_OBJECT_CORNERS_DIR, '025_mug', 'corners.npy'))
+    objCorners['019_pitcher_base'] = np.load(os.path.join(YCB_OBJECT_CORNERS_DIR, '019_pitcher_base', 'corners.npy'))
+    objCorners['035_power_drill'] = np.load(os.path.join(YCB_OBJECT_CORNERS_DIR, '035_power_drill', 'corners.npy'))
+    objCorners['037_scissors'] = np.load(os.path.join(YCB_OBJECT_CORNERS_DIR, '037_scissors', 'corners.npy'))
 
     return objCorners
 

@@ -77,7 +77,7 @@ class datasetHo3dMultiCamera(datasetBase):
         pts2DHand = cv2ProjectPoints(camProp, pts3DHand, isOpenGLCoords=True)
         if 'objCornersTransormed' not in pklData.keys():
             objID = seqToObjID[seq]
-            objCornersFilename = join(YCB_MODELS_DIR, objID, 'corners.npy')
+            objCornersFilename = join(YCB_OBJECT_CORNERS_DIR, objID, 'corners.npy')
             objCorners = np.load(objCornersFilename)
             pts3DObj = np.matmul(objCorners, cv2.Rodrigues(pklData['rotObj'])[0].T) + pklData['transObj']
         else:
