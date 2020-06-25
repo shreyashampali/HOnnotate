@@ -88,11 +88,13 @@ class renderScene():
         ], dtype=np.float32)
         elements = np.matmul(normMat, elements1)
 
-        self.camera.set_projection_matrix(elements)
+        self.camera.projMatrix = elements
+        # self.camera.set_projection_matrix(elements)
 
     def setCamProjMatrix(self, P):
         assert P.shape == (4, 4), 'Invalid projection matrix shape...'
-        self.camera.set_projection_matrix(P)
+        self.camera.projMatrix = P
+        # self.camera.set_projection_matrix(P)
 
     def getCamProjMatrix(self):
         return self.camera.get_projection_matrix()
