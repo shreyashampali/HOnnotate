@@ -76,7 +76,8 @@ class renderScene():
     def addCamera(self, projMat=None):
         self.camera = pyrender.PerspectiveCamera(yfov=np.pi / 3.0, aspectRatio=1.0)
         if projMat is not None:
-            self.camera.set_projection_matrix(projMat)
+            self.camera.projMatrix = projMat
+            # self.camera.set_projection_matrix(projMat)
         self.scene.add(self.camera, pose=np.eye(4))
 
     def creatcamProjMat(self, f, c, near, far):
@@ -105,11 +106,13 @@ class renderScene():
         ], dtype=np.float32)
         elements = np.matmul(normMat, elements1)
 
-        self.camera.set_projection_matrix(elements)
+        self.camera.projMatrix = elements
+        # self.camera.set_projection_matrix(elements)
 
     def setCamProjMatrix(self, P):
         assert P.shape == (4, 4), 'Invalid projection matrix shape...'
-        self.camera.set_projection_matrix(P)
+        self.camera.projMatrix = P
+        # self.camera.set_projection_matrix(P)
 
     def getCamProjMatrix(self):
         return self.camera.get_projection_matrix()
