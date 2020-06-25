@@ -216,6 +216,10 @@ The results are dumped in *dirt_hand_obj_refine* folder of `test` sequence.
  <img width="320" src="teaser_images/ho_refine.gif">
   <img width="320" src="teaser_images/ho_refine_blend.gif">
 </p> 
+
+# Known issues
+
+The segmentation network often under-segmentents the hand near the finger tips. This results in a small shift in the final annotated keypoints of the finger tips. In order to account for this, the segmentation maps are corrected after Step 3 using the estimated keypoints and depth map. The segmentation correction script will be updated soon.
  
 
 # Acknowledgements
