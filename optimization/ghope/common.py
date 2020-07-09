@@ -222,7 +222,7 @@ class optModeEnum(Enum):
     # optimize over multiple views. rot/trans, joint angles and beta are fixed for all views
     MULTICAMERA = 3
 
-    MUTLICAMERA_MULTIFRAME = 6  #BADASS, Brint it on baby...
+    MUTLICAMERA_MULTIFRAME = 6 
 
 
 
