@@ -415,10 +415,10 @@ def handPoseMF(w, h, objParamInitList, handParamInitList, objMesh, camProp, out_
                               np.zeros((4,)))[0][:, 0, :]
             imgJoints = showObjJoints(imgJoints, objCornersProj * dscale, lineThickness=2)
 
-            bg = cv2.imread('/home/shreyas/Desktop/checkCrop.jpg')
-            bg = cv2.resize(bg, (320, 240))
-            mask = np.sum(segRen[f], 2) > 0
-            mask = np.stack([mask, mask, mask], axis=2)
+            #bg = cv2.imread('/home/shreyas/Desktop/checkCrop.jpg')
+            #bg = cv2.resize(bg, (320, 240))
+            #mask = np.sum(segRen[f], 2) > 0
+            #mask = np.stack([mask, mask, mask], axis=2)
             # newImg = (finalCol[f, :, :, [2, 1, 0]] * 255).astype(np.uint8) * mask + bg * (1 - mask)
 
             alpha = 0.35
